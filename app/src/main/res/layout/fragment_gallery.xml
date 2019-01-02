@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable name="viewModel" type="com.arjit.gallery.ui.viewmodel.GalleryViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@color/app_background"
+            android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gallery_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="8dp"/>
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="6dp"
+                app:animateLoading="@{viewModel.isLoading}"
+                app:cardCornerRadius="2dp"
+                android:layout_marginBottom="32dp"
+                android:layout_height="wrap_content">
+            <com.github.silvestrpredko.dotprogressbar.DotProgressBar
+                    android:id="@+id/dot_progress_bar"
+                    android:layout_width="56dp"
+                    android:layout_height="16dp"
+                    android:layout_margin="8dp"
+                    app:amount="3"
+                    app:duration="@android:integer/config_mediumAnimTime"
+                    app:endColor="#6620b2aa"
+                    app:startColor="#20b2aa"
+                    app:animationDirection="left"/>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

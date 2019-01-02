@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion v.compileSdk
+    buildToolsVersion v.buildTools
+
+    dataBinding {
+        enabled true
+    }
+
+    lintOptions {
+        lintConfig file('lint.xml')
+    }
+
+    defaultConfig {
+        applicationId "com.arjit.gallery"
+        minSdkVersion v.minSdk
+        targetSdkVersion v.targetSdk
+        resConfigs "en"
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kapt {
+    generateStubs true
+    correctErrorTypes = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //sorted implementations
+    implementation "androidx.lifecycle:lifecycle-runtime:$v.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$v.lifecycle"
+    implementation "androidx.appcompat:appcompat:$v.appcompat"
+    implementation "androidx.cardview:cardview:$v.support"
+    implementation "androidx.constraintlayout:constraintlayout:$v.constraintLayout"
+    implementation "androidx.legacy:legacy-support-v4:$v.support"
+    implementation "androidx.paging:paging-runtime:$v.lifecycle"
+    implementation "androidx.recyclerview:recyclerview:$v.support"
+    implementation "com.github.bumptech.glide:glide:$v.glide"
+    implementation "com.github.silvestrpredko:dot-progress-bar:$v.dotProgressBar"
+    implementation "com.google.dagger:dagger:$v.dagger"
+    implementation "com.google.code.gson:gson:$v.gson"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$v.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$v.retrofit"
+    implementation "com.squareup.retrofit2:retrofit:$v.retrofit"
+    implementation "com.squareup.okhttp3:okhttp:v.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$v.okhttp"
+    implementation "com.uber.autodispose:autodispose:$v.autoDispose"
+    implementation "com.uber.autodispose:autodispose-android:$v.autoDispose"
+    implementation "com.uber.autodispose:autodispose-android-archcomponents:$v.autoDispose"
+    implementation "io.reactivex.rxjava2:rxjava:$v.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$v.rxandroid"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //sorted kapts
+    kapt "androidx.lifecycle:lifecycle-compiler:$v.lifecycle"
+    kapt "com.github.bumptech.glide:compiler:$v.glide"
+    kapt "com.google.dagger:dagger-compiler:$v.dagger"
+}
